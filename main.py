@@ -1,7 +1,22 @@
 from fastapi import FastAPI
 import requests
 from urllib.parse import urljoin
+from fastapi_cors import CORS
+
+
 app = FastAPI()
+
+
+origins = ["*"]
+
+app.add_middleware(
+    CORS,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 def __getJsonResult(data: dict[str]):
         result = {"id": data["dvd_id"]}
